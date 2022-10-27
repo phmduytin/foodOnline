@@ -1,5 +1,6 @@
+from urllib import request
 from django.shortcuts import render
 
 # Create your views here.
-def registerVendor():
-    pass
+def vprofile(request):
+    return render(request, 'vendor/vprofile.html')
