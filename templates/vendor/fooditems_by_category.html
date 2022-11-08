@@ -35,14 +35,22 @@
                                         <td class="text-left">
                                             <a href=""><p class="mb-0 font-weight-bold">{{ food }}</p><small class="text-muted">{{food.description}}</small></a>
                                         </td>
-                                        <td class=""><a href="#"><i class="fa fa-edit" aria-hidden="True"></i></a> <a href="#" class="text-danger">&nbsp;<i class="fa fa-trash" aria-hidden="True"></i></i></a></td>                                    
+                                        <td>
+                                            {% if food.is_available %}
+                                            <span class="badge badge-success">Available</span>
+                                            {% else %}
+                                            <span class="badge badge-danger">Not Available</span>
+                                            {% endif %}
+
+                                        </td>
+                                        <td class=""><a href="{% url 'edit_food' food.id %}" style="color:unset;"><i class="fa fa-edit"  aria-hidden="True"></i></a> <a href="{% url 'delete_food' food.id %}" onclick="return confirm('Are you sure want to delete this Food?')" class="text-danger">&nbsp;<i class="fa fa-trash" aria-hidden="True"></i></i></a></td>                                    
                                     </tr>
                                     {% endfor %}
                                 </tbody>
                               </table>
                             {% else %}
                                <h5 class="text-center">No Item food founds.</h5>
-                               <div class="text-center"><a href="#" class="btn btn-success"><i class="fa fa-plus" aria-hidden="True"></i>&nbsp; Add Food</a></div>
+                               <div class="text-center"><a href="{% url 'add_food' %}" class="btn btn-success"><i class="fa fa-plus" aria-hidden="True"></i>&nbsp; Add Food</a></div>
                             {% endif %}
 
 						</div>
